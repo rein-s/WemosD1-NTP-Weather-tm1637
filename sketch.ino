@@ -11,7 +11,8 @@ const char* password = "PASSWORD";
 
 // Define the NTP client and server details
 WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP, "ntp.time.nl");
+unsigned long _updateInterval = (1024*1000);
+NTPClient timeClient(ntpUDP, "ntp.time.nl", _updateInterval);
 
 // Pins for TM1637 display
 #define CLK_PIN 12 // (D5)
