@@ -2,7 +2,7 @@ Simple sketch to add NTP and Weather API (temperature) functionality to a Wemos 
 
 Using this case: https://www.thingiverse.com/thing:6367191
 
-Pinout: 
+Pinout to TM1637: 
 * CLK = D5
 * DIO = D6
 * VCC = 3V3
