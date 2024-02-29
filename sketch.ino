@@ -68,7 +68,22 @@ void loop() {
     // Get the current time
     int hours = timeClient.getHours();
     int minutes = timeClient.getMinutes();
+    int seconds = timeClient.getSeconds();
 
+    /// Automatic brightness adjustment
+    if(hours == 21 && minutes == 0 && seconds  == 0){
+      display.setBrightness(0x00);
+    }
+    else if(hours == 7 && minutes == 0 && seconds  == 0){
+      display.setBrightness(0x02);
+    }
+    else if(hours == 10 && minutes == 0 && seconds  == 0){
+      display.setBrightness(0x04);
+    }
+    else if(hours == 18 && minutes == 0 && seconds  == 0){
+      display.setBrightness(0x02);
+    }
+    
     // Display the time on the TM1637 display
     display.showNumberDecEx((hours * 100) + minutes, 0b01000000, true);
  
