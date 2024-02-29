@@ -45,13 +45,14 @@ void setup() {
   timeClient.begin();
   timeClient.setTimeOffset(3600);  // Set your timezone offset in seconds (e.g., GMT+1)
   // Initialize the display
-  display.setBrightness(0x1); // Adjust the brightness (0x00 to 0x0f)
+  display.setBrightness(0x04); // Adjust the brightness (0x00 to 0x0f)
   Serial.println("Clock setup complete");
 
   internalTemperature = getTemperature();
 }
 void loop() {
   timeClient.update();
+  
   // After 60 ticks get new temperature
   if(updateLoop == 300)
   {
@@ -64,26 +65,26 @@ void loop() {
     flip = !flip; 
   }
 
+  int hours = timeClient.getHours();
+  int minutes = timeClient.getMinutes();
+  int seconds = timeClient.getSeconds();
+
+  /// Automatic brightness adjustmnent
+  if(hours == 21 && minutes == 0 && seconds  == 0){
+    display.setBrightness(0x00);
+  }
+  else if(hours == 7 && minutes == 0 && seconds  == 0){
+    display.setBrightness(0x02);
+  }
+  else if(hours == 10 && minutes == 0 && seconds  == 0){
+    display.setBrightness(0x04);
+  }
+  else if(hours == 18 && minutes == 0 && seconds  == 0){
+    display.setBrightness(0x02);
+  }
+
   if(flip){
     // Get the current time
-    int hours = timeClient.getHours();
-    int minutes = timeClient.getMinutes();
-    int seconds = timeClient.getSeconds();
-
-    /// Automatic brightness adjustment
-    if(hours == 21 && minutes == 0 && seconds  == 0){
-      display.setBrightness(0x00);
-    }
-    else if(hours == 7 && minutes == 0 && seconds  == 0){
-      display.setBrightness(0x02);
-    }
-    else if(hours == 10 && minutes == 0 && seconds  == 0){
-      display.setBrightness(0x04);
-    }
-    else if(hours == 18 && minutes == 0 && seconds  == 0){
-      display.setBrightness(0x02);
-    }
-    
     // Display the time on the TM1637 display
     display.showNumberDecEx((hours * 100) + minutes, 0b01000000, true);
  
