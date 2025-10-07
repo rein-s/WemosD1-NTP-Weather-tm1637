@@ -8,5 +8,5 @@ Pinout to TM1637:
 * VCC = 3V3
 * GND = GND
 
-![A mushroom-head robot drinking bubble tea](https://raw.githubusercontent.com/Codecademy/docs/main/media/codey.jpg)
+![A mushroom-head robot drinking bubble tea](https://eveks.nl/4432-large_default/test.jpg)
 
